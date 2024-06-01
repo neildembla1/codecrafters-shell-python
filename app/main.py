@@ -3,7 +3,7 @@ import os
 
 
 def main():
-	valid_commands = ["exit", "echo", "type", "pwd"]
+	valid_commands = ["exit", "echo", "type", "pwd", "cd"]
 	PATH = os.environ.get("PATH")
 
 	while True:
@@ -39,6 +39,11 @@ def main():
 		if cmd == "pwd":
 			print(os.getcwd())
 			continue
+		if cmd == "cd":
+			path = args[1]
+			if os.path.exists(path): os.chdir(path)
+			else: print(f"{path}: No such file or directory")
+
 
 
 if __name__ == "__main__":
