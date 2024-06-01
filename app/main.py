@@ -2,14 +2,21 @@ import sys
 
 
 def main():
-    while True:
-        sys.stdout.write("$ ")
-        sys.stdout.flush()
+	valid_commands = ["exit"]
 
-        # Wait for user input
-        command = input()
-        sys.stdout.write(f"{command}: command not found\n")
+	while True:
+		sys.stdout.write("$ ")
+		sys.stdout.flush()
+
+		# Wait for user input
+		command = input()
+		args = command.split(" ")
+		if args[0].lower() not in valid_commands:
+			sys.stdout.write(f"{command}: command not found\n")
+			continue
+
+		if args[0].lower() == "exit": break
 
 
 if __name__ == "__main__":
-    main()
+	main()
