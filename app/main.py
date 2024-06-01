@@ -41,7 +41,10 @@ def main():
 			continue
 		if cmd == "cd":
 			path = args[1]
-			if path.startswith("."): path = os.getcwd() + "/" + path
+
+			if path.startswith("./"): path = os.getcwd() + "/" + path.replace("./", "")
+
+			# print(path)
 			if os.path.exists(path): os.chdir(path)
 			else: print(f"{path}: No such file or directory")
 
