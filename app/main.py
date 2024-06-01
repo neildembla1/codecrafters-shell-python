@@ -3,7 +3,7 @@ import os
 
 
 def main():
-	valid_commands = ["exit", "echo", "type"]
+	valid_commands = ["exit", "echo", "type", "pwd"]
 	PATH = os.environ.get("PATH")
 
 	while True:
@@ -36,6 +36,9 @@ def main():
 				else:
 					print(f"{args[1]} not found")
 					continue
+		if cmd == "pwd":
+			print(os.getcwd())
+			continue
 
 
 if __name__ == "__main__":
