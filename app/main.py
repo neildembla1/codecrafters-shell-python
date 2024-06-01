@@ -16,8 +16,11 @@ def main():
 		cmd = args[0].lower()
 
 		if cmd not in valid_commands:
-			sys.stdout.write(f"{command}: command not found\n")
-			continue
+			if os.path.isfile(cmd):
+				os.system(command)
+			else:
+				sys.stdout.write(f"{command}: command not found\n")
+				continue
 
 		if cmd == "exit": break
 		if cmd == "echo":
