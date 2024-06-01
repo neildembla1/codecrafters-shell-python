@@ -1,8 +1,10 @@
 import sys
+import os
 
 
 def main():
 	valid_commands = ["exit", "echo", "type"]
+	PATH = os.environ.get("PATH")
 
 	while True:
 		sys.stdout.write("$ ")
@@ -23,8 +25,14 @@ def main():
 		if cmd == "type":
 			if args[1].lower() in valid_commands: print(f"{args[1]} is a shell builtin")
 			else:
-				print(f"{args[1]} not found")
-				continue
+				paths = PATH.split(":")
+				for path in paths:
+					if os.path.exists(f"{path}/{args[1]}"):
+						sys.stdout.write(f"{args[1]} is {path}/{args[1]}\n")
+						break
+				else:
+					print(f"{args[1]} not found")
+					continue
 
 
 if __name__ == "__main__":
