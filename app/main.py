@@ -2,7 +2,7 @@ import sys
 
 
 def main():
-	valid_commands = ["exit"]
+	valid_commands = ["exit", "echo"]
 
 	while True:
 		sys.stdout.write("$ ")
@@ -16,6 +16,8 @@ def main():
 			continue
 
 		if args[0].lower() == "exit": break
+		if args[0].lower() == "echo":
+			print(" ".join(args[1:]))
 
 
 if __name__ == "__main__":
